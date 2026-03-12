@@ -1,4 +1,4 @@
-# ai_agents_validation
+# Fluxo de Trabalho Agentes IA - Validação
 
 Este repositório contém código de exemplo e recursos para experimentar e validar um fluxo de trabalho composto por múltiplos agentes de inteligência artificial. O objetivo é construir uma prova de conceito de um sistema modular em que agentes especializados cooperam para planejar, desenvolver, validar e documentar software automaticamente.
 
