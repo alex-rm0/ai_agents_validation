@@ -1,4 +1,5 @@
 from typing import List
+import re
 
 from agent.utils import get_env
 from agent.agent_planner import generate_plan
@@ -9,9 +10,51 @@ from agent.agent_outputs import (
     save_requirements_summary,
     save_issues_preview,
     save_validation_report,
+    save_frontend_generation,
     print_plan,
+    clear_frontend_preview_generated,
+    copy_component_to_frontend_preview,
 )
 from agent.agent_github import build_issue_body, create_github_issue
+from agent.agent_frontend_generator import generate_frontend_component
+
+
+def issue_title_to_component_filename(title: str) -> str:
+    words = re.findall(r"[A-Za-zÀ-ÿ0-9]+", title)
+
+    if not words:
+        return "GeneratedComponent.tsx"
+
+    ignored_words = {
+        "de",
+        "da",
+        "do",
+        "das",
+        "dos",
+        "e",
+        "a",
+        "o",
+        "para",
+        "com",
+        "sem",
+        "em",
+        "na",
+        "no",
+        "nas",
+        "nos",
+    }
+
+    filtered_words = [word for word in words if word.lower() not in ignored_words]
+
+    if not filtered_words:
+        filtered_words = words
+
+    pascal_case = "".join(word.capitalize() for word in filtered_words)
+
+    if not pascal_case.endswith("Component"):
+        pascal_case += "Component"
+
+    return f"{pascal_case}.tsx"
 
 
 def main() -> None:
@@ -51,6 +94,64 @@ def main() -> None:
 
     print_plan(plan)
 
+    frontend_issues = [
+        issue for issue in plan["issues"]
+        if "frontend" in issue.get("labels", [])
+    ]
+
+    if frontend_issues:
+        clear_frontend_preview_generated()
+        
+        print("\n=== ISSUES FRONTEND DISPONÍVEIS ===")
+        for i, issue in enumerate(frontend_issues, start=1):
+            print(f"{i}. {issue['title']}")
+
+        frontend_mode = input(
+            "\nQueres gerar frontend para (1) uma issue, (2) todas as issues frontend, ou (3) ignorar? "
+        ).strip()
+
+        if frontend_mode == "1":
+            selected = input("Escolhe o número da issue frontend: ").strip()
+
+            if selected.isdigit():
+                selected_index = int(selected) - 1
+
+                if 0 <= selected_index < len(frontend_issues):
+                    selected_issue = frontend_issues[selected_index]
+                    file_name = issue_title_to_component_filename(selected_issue["title"])
+
+                    print("\nA gerar componente frontend...")
+                    frontend_result = generate_frontend_component(selected_issue)
+
+                    saved_file = save_frontend_generation(frontend_result, run_dir, file_name=file_name)
+
+                    print("\nComponente frontend gerado com sucesso.")
+                    print(f"Ficheiro guardado em: {saved_file}")
+                    print(f"Componente copiado para: frontend_preview/src/generated/{file_name}")
+                else:
+                    print("Número inválido. Geração frontend ignorada.")
+            else:
+                print("Valor inválido. Geração frontend ignorada.")
+
+        elif frontend_mode == "2":
+            print("\nA gerar componentes frontend para todas as issues...")
+
+            for issue in frontend_issues:
+                file_name = issue_title_to_component_filename(issue["title"])
+                frontend_result = generate_frontend_component(issue)
+                saved_file = save_frontend_generation(frontend_result, run_dir, file_name=file_name)
+
+                print(f"Gerado: {saved_file}")
+                print(f"Copiado para: frontend_preview/src/generated/{file_name}")
+
+            print("\nTodos os componentes frontend foram gerados com sucesso.")
+
+        elif frontend_mode == "3":
+            print("Geração frontend ignorada.")
+
+        else:
+            print("Opção inválida. Geração frontend ignorada.")
+    
     confirm = input("\nQueres criar estas issues no GitHub? (s/n): ").strip().lower()
 
     if confirm != "s":

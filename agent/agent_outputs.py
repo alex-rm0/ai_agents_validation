@@ -1,4 +1,5 @@
 import json
+import shutil
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, List
@@ -87,3 +88,54 @@ def print_plan(plan: Dict[str, Any]) -> None:
             print("   Critérios de aceitação:")
             for criterion in criteria:
                 print(f"   - {criterion}")
+
+
+def save_frontend_generation(
+    result: Dict[str, str],
+    run_dir: Path,
+    file_name: str,
+    preview_base_dir: str = "frontend_preview",
+) -> Path:
+    frontend_dir = run_dir / "frontend"
+    frontend_dir.mkdir(parents=True, exist_ok=True)
+
+    safe_stem = Path(file_name).stem
+
+    prompt_file = frontend_dir / f"{safe_stem}_prompt.txt"
+    raw_file = frontend_dir / f"{safe_stem}_raw_response.txt"
+    code_file = frontend_dir / file_name
+
+    prompt_file.write_text(result["prompt"], encoding="utf-8")
+    raw_file.write_text(result["raw_response"], encoding="utf-8")
+    code_file.write_text(result["code"], encoding="utf-8")
+
+    copy_component_to_frontend_preview(code_file, preview_base_dir=preview_base_dir)
+
+    return code_file
+
+
+def copy_component_to_frontend_preview(
+    source_file: Path,
+    preview_base_dir: str = "frontend_preview",
+) -> Path | None:
+    preview_generated_dir = Path(preview_base_dir) / "src" / "generated"
+
+    if not preview_generated_dir.parent.parent.exists():
+        return None
+
+    preview_generated_dir.mkdir(parents=True, exist_ok=True)
+
+    destination_file = preview_generated_dir / source_file.name
+    shutil.copy2(source_file, destination_file)
+
+    return destination_file
+
+
+def clear_frontend_preview_generated(preview_base_dir: str = "frontend_preview"):
+    preview_generated_dir = Path(preview_base_dir) / "src" / "generated"
+
+    if not preview_generated_dir.exists():
+        return
+
+    for file in preview_generated_dir.glob("*.tsx"):
+        file.unlink()
