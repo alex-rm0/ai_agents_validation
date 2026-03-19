@@ -1,0 +1,126 @@
+Quero que implementes no meu projeto um fluxo novo de geração automática de testes funcionais, integrado com a pipeline atual de agentes.
+
+Contexto do projeto:
+O sistema já recebe um prompt do utilizador, gera um resumo, requisitos e issues. Já existe lógica opcional para enviar issues para o GitHub e para gerar artefactos de frontend. Quero acrescentar uma terceira opção: geração de artefactos de testes funcionais.
+
+Objetivo funcional:
+Quero um agente opcional que leia:
+1) o prompt original do utilizador
+2) os requisitos já gerados
+3) as issues já geradas
+
+e produza artefactos de testes funcionais, pelo menos ficheiros .feature em Gherkin, organizados e coerentes com a funcionalidade pedida.
+
+Esta geração de testes tem de ser opcional. Tal como hoje posso escolher gerar issues GitHub ou frontend, também devo poder escolher:
+- gerar apenas issues
+- gerar apenas frontend
+- gerar apenas testes
+- gerar combinações destas opções
+- ou não gerar testes quando não fizer sentido
+
+Não quero acoplar esta funcionalidade ao frontend. Deve ser um ramo opcional da pipeline.
+
+O que pretendo implementar:
+1. Um novo agente ou módulo de geração de testes funcionais no lado principal da aplicação. Aproveita os exemplos de agentes.py já gerados para criar este agente, para manter a coerência no código.
+2. Um formato de saída claro para os testes gerados.
+3. Integração com a pasta `test_engine`, para que os artefactos gerados possam ser copiados para lá. Não quero que essa cópia seja automática para já, faço isso à mão nesta fase de teste inicial. Indica-me depois onde é que esses ficheiros .feature são guardados.
+4. No `test_engine`, quero a base necessária para que os testes consigam compilar e correr sem implementação manual caso os artefactos gerados respeitem o contrato esperado.
+
+Importante:
+Não quero uma solução “mágica” em que o motor tente inferir qualquer passo arbitrário a partir de linguagem natural livre. Quero uma solução robusta e previsível, baseada em templates e convenções.
+
+Arquitetura pretendida:
+No lado do gerador principal:
+- Criar um agente ou função dedicada, por exemplo `generate_functional_tests(...)`.
+- Entrada: `user_prompt`, `requirements`, `issues`.
+- Saída: estrutura com cenários de teste funcionais e ficheiros `.feature`.
+
+A geração deve:
+- identificar fluxos principais e happy paths
+- identificar cenários mínimos úteis para validação funcional
+- evitar inventar detalhes não suportados pelo prompt/requisitos/issues
+- manter os cenários executáveis e concretos
+- criar nomes de ficheiros claros
+- agrupar cenários por funcionalidade
+
+Os `.feature` devem usar steps controlados por um vocabulário limitado e previsível. Por exemplo, usar frases como:
+- Given the user navigates to "<route>"
+- When the user fills "<field>" with "<value>"
+- When the user clicks "<button>"
+- Then the user should see "<text>"
+- Then the url should contain "<fragment>"
+
+Não quero Gherkin demasiado livre. Quero steps padronizados, para que o `test_engine` os consiga suportar de forma genérica.
+
+No lado do `test_engine`:
+Quero que cries a infraestrutura necessária para suportar esses `.feature` gerados automaticamente, sem eu ter de implementar cada cenário à mão.
+
+A solução no `test_engine` deve incluir:
+- suporte Reqnroll/BDD para os `.feature`
+- step definitions genéricas para os steps padronizados
+- helpers Playwright reutilizáveis
+- uma estratégia simples de localização de elementos, por exemplo:
+  - tentar por placeholder
+  - tentar por label
+  - tentar por texto
+  - tentar por `data-testid` ou `data-cy` quando existir
+- configuração para base URL e credenciais, reaproveitando o que já existir
+- organização clara entre código estável do framework e ficheiros gerados
+
+Quero uma separação explícita entre:
+- código base estável do `test_engine`
+- ficheiros gerados automaticamente
+
+Sugestão de estrutura:
+- `generated_tests/features/`
+- `generated_tests/specs/` se precisares de um formato intermédio
+- no `test_engine`, algo como:
+  - `Features/Generated/`
+  - `StepDefinitions/Generated/` ou, preferencialmente, um conjunto pequeno de step definitions genéricas
+  - `Helpers/`
+  - `Pages/`
+  - `Generated/Manifest/`
+
+Se achares melhor, podes introduzir um manifesto JSON intermédio além dos `.feature`, desde que isso torne a solução mais robusta. Nesse caso:
+- o agente gera `.feature` + `manifest.json`
+- o `test_engine` usa o manifesto para saber que ficheiros esperar e como mapear melhor os testes
+
+Requisitos de implementação:
+- adicionar uma flag/opção na pipeline principal para ativar ou não a geração de testes
+- essa opção deve coexistir com as opções já existentes para GitHub e frontend
+- não quebrar o fluxo atual
+- manter backward compatibility
+- escrever código limpo e modular
+- evitar hardcoding excessivo
+- documentar no README como usar esta nova opção
+
+Quero também que cries:
+1. a interface/função de orquestração da nova opção
+2. o módulo de geração dos `.feature`
+3. os templates Gherkin usados
+4. os step definitions genéricos necessários no `test_engine`
+5. um exemplo funcional completo de ponta a ponta
+
+Exemplo de fluxo esperado:
+- o utilizador descreve uma funcionalidade simples, por exemplo login
+- o sistema gera requisitos e issues
+- se a opção `generate_tests=true` estiver ativa, o novo agente gera ficheiros `.feature`
+- esses ficheiros são colocados numa pasta de output
+- existe uma forma simples de os copiar/integrar no `test_engine`
+- o `test_engine` consegue fazer `dotnet build` e `dotnet test` sem eu escrever código manual para esse cenário
+
+Quero que implementes isto com foco em MVP funcional, não em perfeição total.
+Se tiveres de escolher, privilegia:
+- robustez
+- previsibilidade
+- simplicidade da arquitetura
+- facilidade de extensão futura
+
+Entrega que pretendo de ti:
+- proposta breve da arquitetura final
+- alterações concretas nos ficheiros do projeto
+- código implementado
+- explicação resumida de como correr o fluxo
+- exemplo com uma funcionalidade simples, gerando testes automaticamente
+
+Se achares que o melhor fluxo não é gerar apenas `.feature`, mas também um formato intermédio ou ficheiros adicionais, implementa isso e explica porquê.
