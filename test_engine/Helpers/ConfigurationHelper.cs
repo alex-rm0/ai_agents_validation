@@ -39,4 +39,19 @@ public static class ConfigurationHelper
         Environment.GetEnvironmentVariable("TEST_PASSWORD")
         ?? _config["TestPassword"]
         ?? throw new InvalidOperationException("TestPassword is not configured.");
+
+    public static string GetUsernameSelector() =>
+        Environment.GetEnvironmentVariable("USERNAME_SELECTOR")
+        ?? _config["UsernameSelector"]
+        ?? "input[type='text']";
+
+    public static string GetPasswordSelector() =>
+        Environment.GetEnvironmentVariable("PASSWORD_SELECTOR")
+        ?? _config["PasswordSelector"]
+        ?? "input[type='password']";
+
+    public static string GetLoginButtonSelector() =>
+        Environment.GetEnvironmentVariable("LOGIN_BUTTON_SELECTOR")
+        ?? _config["LoginButtonSelector"]
+        ?? "button[type='submit']";
 }

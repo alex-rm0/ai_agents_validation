@@ -36,18 +36,22 @@ public class LoginPage : BasePage
             Console.WriteLine($"[LoginAsync] A usar nova página: {Page.Url}");
         }
 
-        await Page.Locator("input[type='text']").WaitForAsync(new LocatorWaitForOptions
+        var usernameSelector = ConfigurationHelper.GetUsernameSelector();
+        var passwordSelector = ConfigurationHelper.GetPasswordSelector();
+        var loginButtonSelector = ConfigurationHelper.GetLoginButtonSelector();
+
+        await Page.Locator(usernameSelector).WaitForAsync(new LocatorWaitForOptions
         {
             Timeout = 10000
         });
 
-        await Page.Locator("input[type='text']").FillAsync(username);
-        await Page.Locator("input[type='password']").WaitForAsync(new LocatorWaitForOptions
+        await Page.Locator(usernameSelector).FillAsync(username);
+        await Page.Locator(passwordSelector).WaitForAsync(new LocatorWaitForOptions
         {
             Timeout = 10000
         });
-        await Page.Locator("input[type='password']").FillAsync(password);
-        await Page.Locator("text=Iniciar Sessão").ClickAsync();
+        await Page.Locator(passwordSelector).FillAsync(password);
+        await Page.Locator(loginButtonSelector).ClickAsync();
     }
 
     public async Task<bool> IsAuthenticatedAsync()
