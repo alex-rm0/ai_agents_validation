@@ -36,23 +36,35 @@ public class LoginPage : BasePage
             Console.WriteLine($"[LoginAsync] A usar nova página: {Page.Url}");
         }
 
-        await Page.Locator("input[data-cy='email']").WaitForAsync(new LocatorWaitForOptions
+        await Page.Locator("input[type='text']").WaitForAsync(new LocatorWaitForOptions
         {
             Timeout = 10000
         });
 
-        await Page.Locator("input[data-cy='email']").FillAsync(username);
-        await Page.Locator("input[data-cy='password']").WaitForAsync(new LocatorWaitForOptions
+        await Page.Locator("input[type='text']").FillAsync(username);
+        await Page.Locator("input[type='password']").WaitForAsync(new LocatorWaitForOptions
         {
             Timeout = 10000
         });
-        await Page.Locator("input[data-cy='password']").FillAsync(password);
+        await Page.Locator("input[type='password']").FillAsync(password);
         await Page.Locator("text=Iniciar Sessão").ClickAsync();
     }
 
     public async Task<bool> IsAuthenticatedAsync()
     {
-        await Page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
-        return !Page.Url.Contains("login", StringComparison.OrdinalIgnoreCase);
+        try
+        {
+            await Page.WaitForURLAsync(
+                url => !url.Contains("login", StringComparison.OrdinalIgnoreCase),
+                new PageWaitForURLOptions { Timeout = 15000 }
+            );
+            Console.WriteLine($"[IsAuthenticatedAsync] URL após login: {Page.Url}");
+            return true;
+        }
+        catch (TimeoutException)
+        {
+            Console.WriteLine($"[IsAuthenticatedAsync] Timeout — URL ainda é: {Page.Url}");
+            return false;
+        }
     }
 }
