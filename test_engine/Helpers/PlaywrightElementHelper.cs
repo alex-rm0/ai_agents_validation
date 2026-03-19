@@ -4,112 +4,89 @@ namespace FunctionalTests.Helpers;
 
 /// <summary>
 /// Helper de localização de elementos Playwright por múltiplas estratégias.
-/// Ordem de tentativa para campos de input:
-///   1. GetByLabel (label associada ao campo)
-///   2. GetByPlaceholder (atributo placeholder)
-///   3. [data-testid="hint"]
-///   4. [data-cy="hint"]
-///   5. hint como CSS selector
 ///
-/// Ordem de tentativa para elementos clicáveis:
-///   1. GetByRole(Button, Name)
-///   2. GetByRole(Link, Name)
-///   3. GetByText (texto exacto)
-///   4. GetByText (texto parcial)
-///   5. [data-testid="hint"]
-///   6. [data-cy="hint"]
-///   7. hint como CSS selector
+/// Estratégia de localização (ordem obrigatória):
+///   1. placeholder  — GetByPlaceholder(hint)
+///   2. label        — GetByLabel(hint)
+///   3. texto visível— GetByText(hint, exact) depois GetByText(hint, partial)
+///   4. data-testid  — [data-testid="hint"]
+///   5. data-cy      — [data-cy="hint"]
+///   6. CSS selector — page.Locator(hint)  (fallback genérico)
+///
+/// O método principal é FindElementAsync(IPage, string).
+/// Use-o em todos os steps que interagem com o DOM.
 /// </summary>
 public static class PlaywrightElementHelper
 {
     /// <summary>
     /// Tempo máximo (ms) para cada tentativa individual de localização.
-    /// Valor baixo para não bloquear muito tempo em estratégias que não funcionam.
+    /// Valor baixo para que estratégias que falham não bloqueiem demasiado tempo.
     /// </summary>
     private const int QuickTimeout = 1500;
 
+    // ─── API pública ────────────────────────────────────────────────────────
+
     /// <summary>
-    /// Localiza um campo de input para preenchimento (Fill).
-    /// Tenta por: label, placeholder, data-testid, data-cy, CSS selector.
+    /// Localiza um elemento na página usando a cadeia de estratégias definida.
+    /// Ordem: placeholder → label → texto visível → data-testid → data-cy → CSS selector.
     /// </summary>
     /// <param name="page">A página Playwright activa.</param>
-    /// <param name="hint">Label, placeholder, data-testid, data-cy, ou CSS selector do campo.</param>
+    /// <param name="hint">Placeholder, label, texto visível, data-testid, data-cy, ou CSS selector.</param>
     /// <returns>O primeiro locator encontrado e visível.</returns>
-    /// <exception cref="InvalidOperationException">Se nenhuma estratégia encontrar o elemento.</exception>
-    public static async Task<ILocator> FindForFillAsync(IPage page, string hint)
+    /// <exception cref="InvalidOperationException">
+    /// Se nenhuma estratégia encontrar um elemento visível.
+    /// </exception>
+    public static async Task<ILocator> FindElementAsync(IPage page, string hint)
     {
         var strategies = new (string Name, Func<ILocator> Fn)[]
         {
-            ("GetByLabel",      () => page.GetByLabel(hint)),
-            ("GetByPlaceholder",() => page.GetByPlaceholder(hint)),
-            ("data-testid",     () => page.Locator($"[data-testid='{hint}']")),
-            ("data-cy",         () => page.Locator($"[data-cy='{hint}']")),
-            ("css/name",        () => page.Locator($"[name='{hint}']")),
-            ("css",             () => page.Locator(hint)),
+            // 1. Placeholder
+            ("placeholder",      () => page.GetByPlaceholder(hint)),
+            // 2. Label associada ao campo
+            ("label",            () => page.GetByLabel(hint)),
+            // 3. Texto visível — exacto primeiro, parcial depois
+            ("text[exact]",      () => page.GetByText(hint, new() { Exact = true })),
+            ("text[partial]",    () => page.GetByText(hint, new() { Exact = false })),
+            // 4. data-testid
+            ("data-testid",      () => page.GetByTestId(hint)),
+            // 5. data-cy
+            ("data-cy",          () => page.Locator($"[data-cy='{hint}']")),
+            // 6. CSS / ARIA / qualquer selector Playwright
+            ("css",              () => page.Locator(hint)),
         };
 
-        return await TryStrategiesAsync(hint, strategies)
-               ?? throw new InvalidOperationException(
-                   $"[PlaywrightElementHelper] Não foi possível encontrar o campo '{hint}'. " +
-                   "Tentativas: GetByLabel, GetByPlaceholder, data-testid, data-cy, name attr, CSS selector.");
+        var locator = await TryStrategiesAsync(hint, strategies);
+
+        if (locator is null)
+        {
+            throw new InvalidOperationException(
+                $"[PlaywrightElementHelper] Não foi possível encontrar o elemento '{hint}'. " +
+                "Estratégias tentadas: placeholder, label, texto visível (exacto/parcial), " +
+                "data-testid, data-cy, CSS selector.");
+        }
+
+        return locator;
     }
 
     /// <summary>
-    /// Localiza um elemento clicável (botão, link, qualquer elemento com texto).
-    /// Tenta por: button role, link role, texto exacto, texto parcial, data-testid, data-cy, CSS selector.
+    /// Verifica se existe pelo menos um elemento visível que corresponda ao hint.
+    /// Usa a mesma cadeia de estratégias de FindElementAsync mas não lança excepção — devolve bool.
     /// </summary>
-    /// <param name="page">A página Playwright activa.</param>
-    /// <param name="hint">Texto, data-testid, data-cy, ou CSS selector do elemento.</param>
-    /// <returns>O primeiro locator encontrado e visível.</returns>
-    /// <exception cref="InvalidOperationException">Se nenhuma estratégia encontrar o elemento.</exception>
-    public static async Task<ILocator> FindForClickAsync(IPage page, string hint)
+    public static async Task<bool> IsElementVisibleAsync(IPage page, string hint)
     {
         var strategies = new (string Name, Func<ILocator> Fn)[]
         {
-            ("button[name]",    () => page.GetByRole(AriaRole.Button, new() { Name = hint })),
-            ("link[name]",      () => page.GetByRole(AriaRole.Link, new() { Name = hint })),
-            ("text[exact]",     () => page.GetByText(hint, new() { Exact = true })),
-            ("text[partial]",   () => page.GetByText(hint, new() { Exact = false })),
-            ("data-testid",     () => page.Locator($"[data-testid='{hint}']")),
-            ("data-cy",         () => page.Locator($"[data-cy='{hint}']")),
-            ("css",             () => page.Locator(hint)),
-        };
-
-        return await TryStrategiesAsync(hint, strategies)
-               ?? throw new InvalidOperationException(
-                   $"[PlaywrightElementHelper] Não foi possível encontrar o elemento '{hint}'. " +
-                   "Tentativas: button, link, texto exacto, texto parcial, data-testid, data-cy, CSS selector.");
-    }
-
-    /// <summary>
-    /// Verifica se um elemento está visível na página.
-    /// Tenta por: data-testid, data-cy, texto exacto, CSS selector.
-    /// </summary>
-    /// <param name="page">A página Playwright activa.</param>
-    /// <param name="hint">Texto visível, data-testid, data-cy, ou CSS selector.</param>
-    /// <returns>True se o elemento estiver visível, false caso contrário.</returns>
-    public static async Task<bool> IsVisibleAsync(IPage page, string hint)
-    {
-        var strategies = new (string Name, Func<ILocator> Fn)[]
-        {
+            ("placeholder",   () => page.GetByPlaceholder(hint)),
+            ("label",         () => page.GetByLabel(hint)),
             ("text[exact]",   () => page.GetByText(hint, new() { Exact = true })),
             ("text[partial]", () => page.GetByText(hint, new() { Exact = false })),
-            ("data-testid",   () => page.Locator($"[data-testid='{hint}']")),
+            ("data-testid",   () => page.GetByTestId(hint)),
             ("data-cy",       () => page.Locator($"[data-cy='{hint}']")),
             ("css",           () => page.Locator(hint)),
         };
 
         var locator = await TryStrategiesAsync(hint, strategies);
         return locator is not null;
-    }
-
-    /// <summary>
-    /// Localiza um campo para ler o seu valor.
-    /// Tenta por: label, placeholder, data-testid, data-cy, name attr, CSS selector.
-    /// </summary>
-    public static async Task<ILocator> FindForReadAsync(IPage page, string hint)
-    {
-        return await FindForFillAsync(page, hint);
     }
 
     // ─── Implementação interna ────────────────────────────────────────────────
@@ -124,7 +101,6 @@ public static class PlaywrightElementHelper
             {
                 var locator = fn();
 
-                // Verifica rapidamente se existe pelo menos um elemento visível
                 await locator.First.WaitForAsync(new LocatorWaitForOptions
                 {
                     State = WaitForSelectorState.Visible,
@@ -136,7 +112,7 @@ public static class PlaywrightElementHelper
             }
             catch
             {
-                // Estratégia não encontrou o elemento — tenta a próxima
+                // Esta estratégia não encontrou o elemento — tenta a próxima.
             }
         }
 

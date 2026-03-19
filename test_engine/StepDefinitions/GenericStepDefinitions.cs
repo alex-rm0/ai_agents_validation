@@ -8,11 +8,11 @@ namespace FunctionalTests.StepDefinitions;
 
 /// <summary>
 /// Biblioteca de step definitions genéricas com vocabulário controlado.
-/// Todos os steps usam PlaywrightElementHelper para localizar elementos por:
-///   placeholder → label → texto visível → data-testid/data-cy → CSS selector.
+/// Todos os steps que interagem com o DOM usam PlaywrightElementHelper.FindElementAsync
+/// com a estratégia: placeholder → label → texto visível → data-testid/data-cy → CSS selector.
 ///
-/// Estes steps podem ser usados directamente em qualquer .feature gerado
-/// automaticamente sem necessidade de implementação C# adicional.
+/// Qualquer .feature em Features/generated/ que use exclusivamente este vocabulário
+/// corre sem necessidade de implementação C# adicional.
 ///
 /// Vocabulário completo: test_engine/docs/step-vocabulary.md
 /// </summary>
@@ -34,7 +34,7 @@ public sealed class GenericStepDefinitions
 
     /// <summary>
     /// Navega para uma rota relativa à BASE_URL.
-    /// Exemplos de route: "login", "dashboard", "#/settings", "/"
+    /// Exemplos: "login", "dashboard", "#/settings", "/", ou URL absoluta.
     /// </summary>
     [Given(@"the user navigates to ""(.+)""")]
     public async Task GivenTheUserNavigatesTo(string route)
@@ -54,8 +54,10 @@ public sealed class GenericStepDefinitions
     }
 
     /// <summary>
-    /// Realiza o login com as credenciais configuradas em TestConfig / appsettings.json.
-    /// Navega para a página de login, preenche username e password, e aguarda autenticação.
+    /// Realiza login com as credenciais configuradas em TestConfig / appsettings.json.
+    /// Navega para LoginPath, preenche username/password usando os selectores configurados,
+    /// e aguarda que a URL mude (indica autenticação). Não lança excepção em caso de timeout —
+    /// as asserções seguintes verificarão se o login foi bem-sucedido.
     /// </summary>
     [Given(@"the user is logged in")]
     public async Task GivenTheUserIsLoggedIn()
@@ -70,16 +72,17 @@ public sealed class GenericStepDefinitions
         });
 
         // Aguarda que os campos de login estejam disponíveis
-        await _page.Locator(TestConfig.UsernameSelector).WaitForAsync(new LocatorWaitForOptions { Timeout = 10_000 });
+        await _page.Locator(TestConfig.UsernameSelector).WaitForAsync(new LocatorWaitForOptions
+        {
+            Timeout = 10_000,
+        });
 
-        // Preenche usando os selectores de login configurados
+        // Preenche usando os selectores de login configurados em TestConfig/appsettings.json
         await _page.Locator(TestConfig.UsernameSelector).FillAsync(TestConfig.TestUser);
         await _page.Locator(TestConfig.PasswordSelector).FillAsync(TestConfig.TestPassword);
         await _page.Locator(TestConfig.LoginButtonSelector).ClickAsync();
 
-        // Aguarda que a URL mude (indica autenticação bem-sucedida).
-        // Em caso de timeout, continua sem lançar excepção — as asserções seguintes
-        // verificarão se o login foi realmente bem-sucedido.
+        // Aguarda que a URL mude — se não mudar, as asserções seguintes irão detectar o falhanço.
         try
         {
             await _page.WaitForURLAsync(
@@ -99,48 +102,50 @@ public sealed class GenericStepDefinitions
 
     /// <summary>
     /// Preenche um campo de formulário com um valor.
-    /// O campo é identificado por: label, placeholder, data-testid, data-cy, ou CSS selector.
+    /// O campo é identificado por PlaywrightElementHelper (placeholder → label → texto → data-testid → CSS).
     /// </summary>
     [When(@"the user fills ""(.+)"" with ""(.*)""")]
     public async Task WhenTheUserFillsFieldWith(string field, string value)
     {
         Console.WriteLine($"[GenericSteps] Preencher '{field}' com '{value}'");
-        var element = await PlaywrightElementHelper.FindForFillAsync(_page, field);
+        var element = await PlaywrightElementHelper.FindElementAsync(_page, field);
         await element.FillAsync(value);
     }
 
     /// <summary>
     /// Limpa o conteúdo de um campo de formulário.
-    /// O campo é identificado por: label, placeholder, data-testid, data-cy, ou CSS selector.
+    /// O campo é identificado por PlaywrightElementHelper (placeholder → label → texto → data-testid → CSS).
     /// </summary>
     [When(@"the user clears ""(.+)""")]
     public async Task WhenTheUserClearsField(string field)
     {
         Console.WriteLine($"[GenericSteps] Limpar campo '{field}'");
-        var element = await PlaywrightElementHelper.FindForFillAsync(_page, field);
+        var element = await PlaywrightElementHelper.FindElementAsync(_page, field);
         await element.ClearAsync();
     }
 
     /// <summary>
-    /// Clica num elemento (botão, link, checkbox, etc.).
-    /// O elemento é identificado por: texto, role ARIA, data-testid, data-cy, ou CSS selector.
+    /// Clica num elemento (botão, link, checkbox, tab, etc.).
+    /// O elemento é identificado por PlaywrightElementHelper (placeholder → label → texto → data-testid → CSS).
     /// </summary>
     [When(@"the user clicks ""(.+)""")]
     public async Task WhenTheUserClicksElement(string element)
     {
         Console.WriteLine($"[GenericSteps] Clicar em '{element}'");
-        var locator = await PlaywrightElementHelper.FindForClickAsync(_page, element);
+        var locator = await PlaywrightElementHelper.FindElementAsync(_page, element);
         await locator.ClickAsync();
     }
 
     /// <summary>
-    /// Submete o formulário activo (clica no primeiro button[type=submit] visível).
+    /// Submete o formulário activo.
+    /// Localiza o botão de submit via PlaywrightElementHelper usando o selector CSS padrão.
     /// </summary>
     [When(@"the user submits the form")]
     public async Task WhenTheUserSubmitsTheForm()
     {
         Console.WriteLine("[GenericSteps] Submeter formulário");
-        var submitButton = _page.Locator("button[type='submit'], input[type='submit']").First;
+        var submitButton = await PlaywrightElementHelper.FindElementAsync(
+            _page, "button[type='submit'], input[type='submit']");
         await submitButton.ClickAsync();
     }
 
@@ -158,65 +163,45 @@ public sealed class GenericStepDefinitions
 
     /// <summary>
     /// Verifica que um texto está visível na página.
+    /// Usa PlaywrightElementHelper para localizar o texto com a estratégia padrão.
     /// </summary>
     [Then(@"the user should see ""(.+)""")]
     public async Task ThenTheUserShouldSee(string text)
     {
         Console.WriteLine($"[GenericSteps] Verificar texto visível: '{text}'");
-        var locator = _page.GetByText(text, new() { Exact = false });
-        await locator.First.WaitForAsync(new LocatorWaitForOptions
-        {
-            State = WaitForSelectorState.Visible,
-            Timeout = 10_000,
-        });
-        var count = await locator.CountAsync();
-        count.ShouldBeGreaterThan(0, $"Esperava ver o texto '{text}' na página, mas não foi encontrado.");
+        var isVisible = await PlaywrightElementHelper.IsElementVisibleAsync(_page, text);
+        isVisible.ShouldBeTrue($"Esperava ver o texto '{text}' na página, mas não foi encontrado.");
     }
 
     /// <summary>
     /// Verifica que um texto NÃO está visível na página.
+    /// Usa PlaywrightElementHelper para confirmar ausência do elemento.
     /// </summary>
     [Then(@"the user should not see ""(.+)""")]
     public async Task ThenTheUserShouldNotSee(string text)
     {
         Console.WriteLine($"[GenericSteps] Verificar texto ausente: '{text}'");
 
-        // Aguarda um pouco para garantir que o texto não aparece após animações
+        // Pequena espera para garantir que o texto não aparece após animações
         await Task.Delay(500);
 
-        var locator = _page.GetByText(text, new() { Exact = false });
-        var count = await locator.CountAsync();
-
-        if (count > 0)
-        {
-            var isVisible = await locator.First.IsVisibleAsync();
-            isVisible.ShouldBeFalse($"O texto '{text}' está visível na página mas não deveria estar.");
-        }
-        // Se count == 0, o texto não existe no DOM — condição satisfeita
+        var isVisible = await PlaywrightElementHelper.IsElementVisibleAsync(_page, text);
+        isVisible.ShouldBeFalse($"O texto '{text}' está visível na página mas não deveria estar.");
     }
 
     /// <summary>
     /// Verifica que a URL actual contém um fragmento específico.
-    /// Útil para verificar redireccionamentos parciais (ex: "/dashboard", "#/home").
+    /// Aguarda que a URL mude (WaitForURLAsync) e depois asserta.
     /// </summary>
     [Then(@"the url should contain ""(.+)""")]
     public async Task ThenTheUrlShouldContain(string fragment)
     {
         Console.WriteLine($"[GenericSteps] Verificar URL contém: '{fragment}'");
 
-        // Aguarda que a URL mude para conter o fragmento.
-        // Em caso de timeout, avança para a asserção que produzirá uma mensagem clara.
-        try
-        {
-            await _page.WaitForURLAsync(
-                url => url.Contains(fragment, StringComparison.OrdinalIgnoreCase),
-                new PageWaitForURLOptions { Timeout = 10_000 }
-            );
-        }
-        catch (TimeoutException)
-        {
-            Console.WriteLine($"[GenericSteps] WaitForURL timeout — URL actual: {_page.Url}");
-        }
+        await _page.WaitForURLAsync(
+            url => url.Contains(fragment, StringComparison.OrdinalIgnoreCase),
+            new PageWaitForURLOptions { Timeout = 10_000 }
+        );
 
         _page.Url.Contains(fragment, StringComparison.OrdinalIgnoreCase)
             .ShouldBeTrue($"Esperava que a URL contivesse '{fragment}', mas a URL actual é '{_page.Url}'.");
@@ -230,74 +215,53 @@ public sealed class GenericStepDefinitions
     {
         Console.WriteLine($"[GenericSteps] Verificar URL exacta: '{expectedUrl}'");
 
-        try
-        {
-            await _page.WaitForURLAsync(expectedUrl, new PageWaitForURLOptions { Timeout = 10_000 });
-        }
-        catch (TimeoutException)
-        {
-            Console.WriteLine($"[GenericSteps] WaitForURL timeout — URL actual: {_page.Url}");
-        }
+        await _page.WaitForURLAsync(expectedUrl, new PageWaitForURLOptions { Timeout = 10_000 });
 
         _page.Url.ShouldBe(expectedUrl,
             $"Esperava que a URL fosse '{expectedUrl}', mas a URL actual é '{_page.Url}'.");
     }
 
     /// <summary>
-    /// Verifica que um elemento (identificado por CSS selector, data-testid, ou data-cy) está visível.
+    /// Verifica que um elemento (identificado por CSS selector, data-testid, data-cy, ou texto) está visível.
+    /// Usa PlaywrightElementHelper com a estratégia padrão.
     /// </summary>
     [Then(@"the element ""(.+)"" should be visible")]
     public async Task ThenElementShouldBeVisible(string selector)
     {
         Console.WriteLine($"[GenericSteps] Verificar elemento visível: '{selector}'");
-
-        var locator = _page.Locator(selector);
-        await locator.First.WaitForAsync(new LocatorWaitForOptions
-        {
-            State = WaitForSelectorState.Visible,
-            Timeout = 10_000,
-        });
-
-        var isVisible = await locator.First.IsVisibleAsync();
+        var isVisible = await PlaywrightElementHelper.IsElementVisibleAsync(_page, selector);
         isVisible.ShouldBeTrue($"O elemento '{selector}' deveria estar visível mas não está.");
     }
 
     /// <summary>
-    /// Verifica que um elemento (identificado por CSS selector, data-testid, ou data-cy) NÃO está visível.
+    /// Verifica que um elemento (identificado por CSS selector, data-testid, data-cy, ou texto) NÃO está visível.
+    /// Usa PlaywrightElementHelper com a estratégia padrão.
     /// </summary>
     [Then(@"the element ""(.+)"" should not be visible")]
     public async Task ThenElementShouldNotBeVisible(string selector)
     {
         Console.WriteLine($"[GenericSteps] Verificar elemento oculto: '{selector}'");
-
         await Task.Delay(500);
-
-        var locator = _page.Locator(selector);
-        var count = await locator.CountAsync();
-
-        if (count > 0)
-        {
-            var isVisible = await locator.First.IsVisibleAsync();
-            isVisible.ShouldBeFalse($"O elemento '{selector}' deveria estar oculto mas está visível.");
-        }
+        var isVisible = await PlaywrightElementHelper.IsElementVisibleAsync(_page, selector);
+        isVisible.ShouldBeFalse($"O elemento '{selector}' deveria estar oculto mas está visível.");
     }
 
     /// <summary>
     /// Verifica que o valor de um campo de formulário contém o texto esperado.
-    /// O campo é identificado por: label, placeholder, data-testid, data-cy, ou CSS selector.
+    /// Usa PlaywrightElementHelper para localizar o campo.
     /// </summary>
     [Then(@"the field ""(.+)"" should contain ""(.*)""")]
     public async Task ThenTheFieldShouldContain(string field, string expectedValue)
     {
         Console.WriteLine($"[GenericSteps] Verificar campo '{field}' contém '{expectedValue}'");
-        var element = await PlaywrightElementHelper.FindForReadAsync(_page, field);
+        var element = await PlaywrightElementHelper.FindElementAsync(_page, field);
         var actualValue = await element.InputValueAsync();
         actualValue.Contains(expectedValue)
             .ShouldBeTrue($"O campo '{field}' deveria conter '{expectedValue}', mas contém '{actualValue}'.");
     }
 
     /// <summary>
-    /// Verifica que o título da página é o esperado.
+    /// Verifica que o título da página (tag &lt;title&gt;) é o esperado.
     /// </summary>
     [Then(@"the page title should be ""(.+)""")]
     public async Task ThenThePageTitleShouldBe(string expectedTitle)
