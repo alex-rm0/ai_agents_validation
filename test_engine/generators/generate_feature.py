@@ -83,16 +83,14 @@ Feature: Login de utilizador
 
 
 def load_api_key() -> str:
-    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
-
-    if not key:
+    try:
+        from dotenv import load_dotenv
         env_file = Path(__file__).parent.parent.parent / ".env"
-        if env_file.exists():
-            for line in env_file.read_text(encoding="utf-8").splitlines():
-                line = line.strip()
-                if line.startswith("OPENROUTER_API_KEY="):
-                    key = line.split("=", 1)[1].strip().strip('"').strip("'")
-                    break
+        load_dotenv(dotenv_path=env_file, override=False)
+    except ImportError:
+        pass
+
+    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
 
     if not key:
         print("Erro: OPENROUTER_API_KEY não definida.")
