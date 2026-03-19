@@ -1,37 +1,34 @@
-import React, { useState } from "react";
-
-import LoginPage from "./generated/DesenvolverEstruturaPáginaLoginComponent";
-import EmailInput from "./generated/ImplementarValidaçãoEmailComponent";
-import PasswordToggle from "./generated/AdicionarBotãoMostrarPasswordComponent";
-import ForgotPasswordLink from "./generated/IncluirLinkRecuperaçãoPasswordComponent";
+import React from "react";
+import LoginForm from "./generated/ImplementarFormulárioLoginCamposEmailPasswordComponent";
+import EmailValidator from "./generated/ImplementarValidaçãoEmailComponent";
+import PasswordToggle from "./generated/ImplementarBotãoMostrarPasswordComponent";
+import PasswordResetLink from "./generated/ImplementarLinkRecuperaçãoPasswordComponent";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    console.log("Login attempt:", { email, password });
-    alert(`Login com ${email}`);
-  };
-
-  const handleForgotPassword = () => {
-    alert("Fluxo de recuperação de password");
+  const handlePasswordReset = (password: string) => {
+    console.log("Password reset:", password);
+    alert("Password reset solicitado");
   };
 
   return (
-    <LoginPage onLogin={() => handleLogin()}>
-      <EmailInput value={email} onChange={setEmail} />
-
-      <PasswordToggle password={password} setPassword={setPassword} />
-
-      <br />
-
-      <button onClick={handleLogin}>Login</button>
-
-      <br />
-
-      <ForgotPasswordLink onForgotPasswordClick={handleForgotPassword} />
-    </LoginPage>
+    <div style={{ maxWidth: 400, margin: "60px auto", fontFamily: "sans-serif" }}>
+      <h1>PM Agent - Frontend Preview</h1>
+      <h2>Login</h2>
+      <LoginForm />
+      <hr />
+      <h3>Validação de Email</h3>
+      <EmailValidator
+        email=""
+        onValid={(v) => console.log("valid", v)}
+        onError={(e) => console.log("error", e)}
+      />
+      <hr />
+      <h3>Mostrar/Esconder Password</h3>
+      <PasswordToggle password="exemplo123" />
+      <hr />
+      <h3>Recuperar Password</h3>
+      <PasswordResetLink onPasswordReset={handlePasswordReset} />
+    </div>
   );
 }
 
