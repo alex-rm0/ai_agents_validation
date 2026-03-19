@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "/home/runner/workspace/test_engine/FunctionalTests.csproj": {}
+    "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\FunctionalTests.csproj": {}
   },
   "projects": {
-    "/home/runner/workspace/test_engine/FunctionalTests.csproj": {
+    "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\FunctionalTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/runner/workspace/test_engine/FunctionalTests.csproj",
+        "projectUniqueName": "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\FunctionalTests.csproj",
         "projectName": "FunctionalTests",
-        "projectPath": "/home/runner/workspace/test_engine/FunctionalTests.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
-        "outputPath": "/home/runner/workspace/test_engine/obj/",
+        "projectPath": "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\FunctionalTests.csproj",
+        "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/runner/workspace/test_engine/NuGet.Config",
-          "/home/runner/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\alexa\\.vscode\\projects\\ai_system_validation\\ai_agents_validation\\test_engine\\NuGet.Config",
+          "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/nix/store/1blv644vinali34masnw6g5fjjjaa4y6-dotnet-sdk-8.0.416/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
