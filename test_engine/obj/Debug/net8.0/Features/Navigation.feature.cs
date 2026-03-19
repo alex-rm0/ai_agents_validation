@@ -27,10 +27,10 @@ namespace FunctionalTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Basic navigation", "  A generic example feature to demonstrate how functional tests are structured.\n " +
-                " This file can be generated automatically by an AI agent for new scenarios.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Basic navigation", "  A generic example feature to demonstrate how functional tests are structured.\r\n" +
+                "  This file can be generated automatically by an AI agent for new scenarios.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "../../../../Features/Navigation.feature"
+#line 1 "..\..\..\..\Features\Navigation.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
