@@ -1,9 +1,10 @@
-modules = ["python-3.12", "nodejs-20", "web"]
+modules = ["python-3.12", "nodejs-20", "web", "dotnet-8.0"]
 [agent]
 expertMode = true
 
 [nix]
 channel = "stable-25_05"
+packages = ["powershell", "glib", "nss", "nspr", "at-spi2-atk", "cups", "libdrm", "gtk3", "pango", "cairo", "alsa-lib", "expat", "libxkbcommon", "xorg.libX11", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXrandr", "xorg.libxcb", "mesa", "udev", "dbus"]
 
 [workflows]
 runButton = "Project"

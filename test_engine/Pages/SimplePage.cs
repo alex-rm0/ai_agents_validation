@@ -15,7 +15,7 @@ public class SimplePage : BasePage
         Page = page;
     }
 
-    public override string PagePath => BaseUrl;
+    public override string PagePath => "";
 
     public override IBrowser Browser { get; }
 
