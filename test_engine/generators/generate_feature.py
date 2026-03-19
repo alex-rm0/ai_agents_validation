@@ -42,19 +42,17 @@ from pathlib import Path
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct"
 
-# Vocabulário completo de steps disponíveis no test_engine.
+# Vocabulário genérico de steps disponíveis no test_engine (GenericStepDefinitions).
 # Este bloco é injetado directamente no system prompt do LLM.
+# NÃO inclui steps legados (a user is on the login page, etc.) — usa apenas o vocabulário genérico.
 STEP_VOCABULARY = """
-## Steps disponíveis (vocabulário controlado)
+## Steps disponíveis — vocabulário genérico controlado (GenericStepDefinitions)
 
 ### Given (pré-condições)
-Given the application base url is configured
-Given a user is on the login page
 Given the user navigates to "<route>"
 Given the user is logged in
 
 ### When (acções)
-When the user logs in with valid credentials
 When the user fills "<field>" with "<value>"
 When the user clears "<field>"
 When the user clicks "<element>"
@@ -62,7 +60,6 @@ When the user submits the form
 When the user waits <N> seconds
 
 ### Then (verificações)
-Then the user should be authenticated
 Then the user should see "<text>"
 Then the user should not see "<text>"
 Then the url should contain "<fragment>"
@@ -71,13 +68,14 @@ Then the element "<selector>" should be visible
 Then the element "<selector>" should not be visible
 Then the field "<field>" should contain "<value>"
 Then the page title should be "<title>"
-Then the browser should be at the base url
 
 ### Notas de sintaxe
 - "And" pode substituir qualquer keyword (Given/When/Then) para melhor legibilidade.
 - "Background:" pode conter steps Given comuns a todos os cenários.
-- Parâmetros em angle brackets (<>) são substituídos por valores reais entre aspas duplas.
+- Parâmetros entre aspas duplas (<field>, <value>, etc.) são obrigatórios tal como mostrado.
 - N em "waits <N> seconds" é um inteiro positivo sem aspas.
+- <route> pode ser relativa ("login", "#/dashboard") ou URL absoluta.
+- <field> e <element> identificam elementos por: placeholder, label, texto visível, data-testid, data-cy, ou CSS selector.
 """
 
 SYSTEM_PROMPT = f"""
