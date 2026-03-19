@@ -175,9 +175,10 @@ def main() -> None:
                 print(f"  - {entry['filename']}  (issue: {entry['issue_ref']})")
 
             print(f"\nGuardados em: {tests_dir}")
-            print("\nPara correr os testes:")
-            print(f"  cp {tests_dir}/*.feature test_engine/Features/generated/")
-            print("  bash test_engine/run_tests.sh")
+            print(
+                "\nPara correr os testes: copia os .feature para "
+                "test_engine/Features/generated/ e executa bash test_engine/run_tests.sh"
+            )
 
         except RuntimeError as e:
             print(f"\nErro na geração de testes: {e}")

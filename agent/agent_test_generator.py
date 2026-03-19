@@ -1,5 +1,6 @@
 import os
 import re
+from pathlib import Path
 from typing import Dict, Any, List
 
 from dotenv import load_dotenv
@@ -16,9 +17,9 @@ client = OpenAI(
     base_url=BASE_URL,
 )
 
-STEP_VOCABULARY = """
-## Vocabulário controlado — ÚNICOS steps permitidos
+_VOCAB_FILE = Path(__file__).parent.parent / "test_engine" / "docs" / "step-vocabulary.md"
 
+_VOCAB_FALLBACK = """
 ### Given (pré-condições)
 Given the user navigates to "<route>"
 Given the user is logged in
@@ -39,23 +40,25 @@ Then the element "<selector>" should be visible
 Then the element "<selector>" should not be visible
 Then the field "<field>" should contain "<value>"
 Then the page title should be "<title>"
+""".strip()
 
-### Notas de sintaxe
-- "And" pode substituir qualquer keyword (Given/When/Then)
-- <route>: rota relativa ("login", "#/dashboard") ou URL absoluta
-- <field> e <element>: identificados por placeholder, label, texto visível, data-testid, data-cy, ou CSS selector
-- <N> em "waits <N> seconds": inteiro positivo, SEM aspas
-- Parâmetros em "<...>": SEMPRE entre aspas duplas no .feature
-"""
 
-SYSTEM_PROMPT = f"""
+def _load_vocabulary() -> str:
+    if _VOCAB_FILE.exists():
+        return _VOCAB_FILE.read_text(encoding="utf-8")
+    return _VOCAB_FALLBACK
+
+
+def _build_system_prompt() -> str:
+    vocabulary = _load_vocabulary()
+    return f"""
 És um QA Test Generator Agent especialista em BDD e Gherkin.
 
 Recebes um pedido de produto, a lista de requisitos, e as issues com acceptance criteria.
 Para cada issue, gera um ficheiro .feature Gherkin usando EXCLUSIVAMENTE o vocabulário abaixo.
 Nunca inventes steps que não estejam nessa lista.
 
-{STEP_VOCABULARY}
+{vocabulary}
 
 FORMATO DE OUTPUT OBRIGATÓRIO:
 Para cada issue, produz um bloco exactamente assim (substitui os campos entre <> pelos valores reais):
@@ -150,12 +153,13 @@ def generate_functional_tests(
     requirements: List[str],
     issues: List[Dict[str, Any]],
 ) -> Dict[str, Any]:
+    system_prompt = _build_system_prompt()
     prompt = build_test_prompt(user_prompt, requirements, issues)
 
     response = client.chat.completions.create(
         model=MODEL,
         messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": prompt},
         ],
         temperature=0.1,
@@ -181,8 +185,8 @@ def generate_functional_tests(
             for f in features
         ],
         "instructions": (
-            "Copia os ficheiros .feature para test_engine/Features/generated/ "
-            "e executa: bash test_engine/run_tests.sh"
+            "Para correr os testes: copia os .feature para test_engine/Features/generated/ "
+            "e executa bash test_engine/run_tests.sh"
         ),
     }
 
