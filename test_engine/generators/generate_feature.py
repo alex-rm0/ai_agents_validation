@@ -6,6 +6,7 @@ Converte acceptance criteria em texto (ou ficheiro) num ficheiro Gherkin
 (.feature) pronto a correr com o test_engine.
 
 Usa OpenRouter (Llama 3.1 8b por defeito) para gerar os cenários.
+O LLM é restringido ao vocabulário controlado definido em docs/step-vocabulary.md.
 
 Uso:
     # A partir de texto directo:
@@ -41,44 +42,92 @@ from pathlib import Path
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct"
 
-SYSTEM_PROMPT = """
+# Vocabulário completo de steps disponíveis no test_engine.
+# Este bloco é injetado directamente no system prompt do LLM.
+STEP_VOCABULARY = """
+## Steps disponíveis (vocabulário controlado)
+
+### Given (pré-condições)
+Given the application base url is configured
+Given a user is on the login page
+Given the user navigates to "<route>"
+Given the user is logged in
+
+### When (acções)
+When the user logs in with valid credentials
+When the user fills "<field>" with "<value>"
+When the user clears "<field>"
+When the user clicks "<element>"
+When the user submits the form
+When the user waits <N> seconds
+
+### Then (verificações)
+Then the user should be authenticated
+Then the user should see "<text>"
+Then the user should not see "<text>"
+Then the url should contain "<fragment>"
+Then the url should be "<url>"
+Then the element "<selector>" should be visible
+Then the element "<selector>" should not be visible
+Then the field "<field>" should contain "<value>"
+Then the page title should be "<title>"
+Then the browser should be at the base url
+
+### Notas de sintaxe
+- "And" pode substituir qualquer keyword (Given/When/Then) para melhor legibilidade.
+- "Background:" pode conter steps Given comuns a todos os cenários.
+- Parâmetros em angle brackets (<>) são substituídos por valores reais entre aspas duplas.
+- N em "waits <N> seconds" é um inteiro positivo sem aspas.
+"""
+
+SYSTEM_PROMPT = f"""
 És um engenheiro de QA especialista em Behaviour-Driven Development (BDD) e Gherkin.
 
 Recebes acceptance criteria de uma funcionalidade de software e deves gerar um ficheiro .feature Gherkin válido.
 
-Regras obrigatórias:
+REGRA CRÍTICA — VOCABULÁRIO CONTROLADO:
+Usa EXCLUSIVAMENTE os steps da lista abaixo. Nunca inventes steps novos.
+Se um critério de aceitação não puder ser coberto pelos steps disponíveis, approxima ao step mais próximo.
+O motor de testes só reconhece estes steps — qualquer step fora da lista causará falha na execução.
+
+{STEP_VOCABULARY}
+
+REGRAS DE FORMATO:
 - Escreve APENAS o conteúdo do ficheiro .feature, sem texto antes ou depois
-- Usa a linguagem: pt (português de Portugal)
 - Começa com: Feature: <nome da funcionalidade>
-- Inclui uma linha de descrição após o Feature
+- Inclui 2-3 linhas de descrição após o Feature (Como/Quero/Para — em português)
 - Cria entre 1 e 4 cenários (Scenario ou Scenario Outline)
 - Cada cenário deve cobrir um critério de aceitação distinto
-- Usa os keywords: Given, When, Then, And, But em inglês (padrão Gherkin)
-- Os steps devem ser concretos e reutilizáveis
-- Não inventes steps que não fazem sentido para o critério dado
+- Usa Background: para steps Given comuns a todos os cenários (se aplicável)
+- A linguagem dos valores dos parâmetros pode ser Português (ex: "Iniciar Sessão")
+- A linguagem dos keywords Gherkin é sempre Inglês (Feature, Scenario, Given, When, Then, And, But)
 - Não uses markdown, blocos de código, ou qualquer formatação extra
-- Não escreva texto fora do .feature
+- Não escreves texto fora do .feature
 
-Exemplo de output esperado (para um critério de login):
+EXEMPLO DE OUTPUT CORRECTO (para um critério de login):
 
-Feature: Login de utilizador
+Feature: Login de Utilizador
   Como utilizador registado
   Quero poder autenticar-me na aplicação
   Para aceder às funcionalidades protegidas
 
+  Background:
+    Given the application base url is configured
+
   Scenario: Login com credenciais válidas
-    Given o utilizador está na página de login
-    When o utilizador introduz um email válido e uma password correcta
-    And clica no botão de iniciar sessão
-    Then o utilizador deve ser autenticado com sucesso
-    And deve ser redirecionado para a página principal
+    Given the user navigates to "login"
+    When the user fills "Username" with "sandrodev"
+    And the user fills "Password" with "Sandrodev-123"
+    And the user clicks "Iniciar Sessão"
+    Then the url should contain "dashboard"
+    And the user should see "Dashboard"
 
   Scenario: Login com password incorrecta
-    Given o utilizador está na página de login
-    When o utilizador introduz um email válido e uma password incorrecta
-    And clica no botão de iniciar sessão
-    Then deve ser apresentada uma mensagem de erro de autenticação
-    And o utilizador deve permanecer na página de login
+    Given the user navigates to "login"
+    When the user fills "Username" with "sandrodev"
+    And the user fills "Password" with "wrong-password"
+    And the user clicks "Iniciar Sessão"
+    Then the user should see "credenciais inválidas"
 """
 
 
@@ -113,7 +162,11 @@ def generate(criteria: str, feature_name: str) -> str:
 
     client = OpenAI(api_key=api_key, base_url=OPENROUTER_BASE_URL)
 
-    user_message = f"Feature: {feature_name}\n\nAcceptance Criteria:\n{criteria.strip()}"
+    user_message = (
+        f"Feature: {feature_name}\n\n"
+        f"Acceptance Criteria:\n{criteria.strip()}\n\n"
+        f"Gera o ficheiro .feature usando EXCLUSIVAMENTE os steps do vocabulário controlado fornecido."
+    )
 
     print(f"A gerar .feature para: {feature_name}")
     print(f"Modelo: {model}")
@@ -166,13 +219,10 @@ def main() -> None:
         help="Nome da funcionalidade (ex: Login, Checkout, RegistoUtilizador).",
     )
 
-    default_output = (
-        Path(__file__).parent.parent / "Features" / "generated" / "{name}.feature"
-    )
     parser.add_argument(
         "--output",
         default=None,
-        help=f"Caminho de output (default: test_engine/Features/generated/<name>.feature).",
+        help="Caminho de output (default: test_engine/Features/generated/<name>.feature).",
     )
 
     args = parser.parse_args()
