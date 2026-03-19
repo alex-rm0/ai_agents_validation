@@ -139,3 +139,20 @@ def clear_frontend_preview_generated(preview_base_dir: str = "frontend_preview")
 
     for file in preview_generated_dir.glob("*.tsx"):
         file.unlink()
+
+
+def save_test_generation(result: Dict[str, Any], run_dir: Path) -> Path:
+    tests_dir = run_dir / "tests"
+    tests_dir.mkdir(parents=True, exist_ok=True)
+
+    for feature in result["features"]:
+        feature_file = tests_dir / feature["filename"]
+        feature_file.write_text(feature["content"], encoding="utf-8")
+
+    manifest_file = tests_dir / "manifest.json"
+    manifest_file.write_text(
+        json.dumps(result["manifest"], indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    return tests_dir

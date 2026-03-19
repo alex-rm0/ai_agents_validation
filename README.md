@@ -17,7 +17,7 @@ Pedido de produto (texto livre)
 [Frontend Generator]  ───── gera componentes React TSX a partir de cada issue
   │
   ▼
-[Test Generator Agent]  ──── converte acceptance criteria em ficheiros .feature (Gherkin)  ← a construir
+[Test Generator Agent]  ──── converte acceptance criteria em ficheiros .feature (Gherkin)
   │
   ▼
 [Test Engine]  ─────────── corre testes BDD funcionais (Playwright + Reqnroll + NUnit)
@@ -91,6 +91,27 @@ cd test_engine && dotnet test
 Configuração dos testes em `test_engine/appsettings.json`.  
 Ver `test_engine/README.md` para mais detalhes.
 
+## Geração de testes funcionais
+
+Ao correr `python main.py`, após a geração de frontend, o pipeline pergunta se queres gerar ficheiros `.feature` Gherkin.
+
+O **Test Generator Agent** lê o prompt original, os requisitos e as issues, e gera cenários BDD usando exclusivamente o vocabulário controlado definido em `test_engine/docs/step-vocabulary.md`.
+
+Os ficheiros gerados ficam em `outputs/<timestamp>/tests/`. Para os executar:
+
+```bash
+# Copia os .feature para o test engine
+cp outputs/<timestamp>/tests/*.feature test_engine/Features/generated/
+
+# Corre os testes (Replit/Linux)
+bash test_engine/run_tests.sh
+
+# Ou localmente (Windows/Mac):
+cd test_engine && dotnet test
+```
+
+O ficheiro `outputs/<timestamp>/tests/manifest.json` lista os ficheiros gerados e a que issue corresponde cada um.
+
 ## Estado actual
 
 | Componente           | Estado       |
@@ -98,5 +119,5 @@ Ver `test_engine/README.md` para mais detalhes.
 | PM Agent             | ✅ Funcional |
 | GitHub Agent         | ✅ Funcional |
 | Frontend Generator   | ✅ Funcional |
+| Test Generator Agent | ✅ Funcional |
 | Test Engine          | ✅ Funcional |
-| Test Generator Agent | 🔧 A construir |

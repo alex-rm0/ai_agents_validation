@@ -11,12 +11,14 @@ from agent.agent_outputs import (
     save_issues_preview,
     save_validation_report,
     save_frontend_generation,
+    save_test_generation,
     print_plan,
     clear_frontend_preview_generated,
     copy_component_to_frontend_preview,
 )
 from agent.agent_github import build_issue_body, create_github_issue
 from agent.agent_frontend_generator import generate_frontend_component
+from agent.agent_test_generator import generate_functional_tests
 
 
 def issue_title_to_component_filename(title: str) -> str:
@@ -151,7 +153,35 @@ def main() -> None:
 
         else:
             print("Opção inválida. Geração frontend ignorada.")
-    
+
+    generate_tests = input(
+        "\nQueres gerar ficheiros de teste Gherkin (.feature)? (s/n): "
+    ).strip().lower()
+
+    if generate_tests == "s":
+        print("\nA gerar ficheiros .feature...")
+
+        try:
+            test_result = generate_functional_tests(
+                user_prompt=user_prompt,
+                requirements=plan["requirements"],
+                issues=plan["issues"],
+            )
+
+            tests_dir = save_test_generation(test_result, run_dir)
+
+            print(f"\nFicheiros .feature gerados com sucesso ({test_result['manifest']['total']} ficheiro(s)):")
+            for entry in test_result["manifest"]["features"]:
+                print(f"  - {entry['filename']}  (issue: {entry['issue_ref']})")
+
+            print(f"\nGuardados em: {tests_dir}")
+            print("\nPara correr os testes:")
+            print(f"  cp {tests_dir}/*.feature test_engine/Features/generated/")
+            print("  bash test_engine/run_tests.sh")
+
+        except RuntimeError as e:
+            print(f"\nErro na geração de testes: {e}")
+
     confirm = input("\nQueres criar estas issues no GitHub? (s/n): ").strip().lower()
 
     if confirm != "s":
