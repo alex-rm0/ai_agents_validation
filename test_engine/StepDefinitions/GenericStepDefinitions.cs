@@ -71,16 +71,15 @@ public sealed class GenericStepDefinitions
             Timeout = 30_000,
         });
 
-        // Aguarda que os campos de login estejam disponíveis
-        await _page.Locator(TestConfig.UsernameSelector).WaitForAsync(new LocatorWaitForOptions
-        {
-            Timeout = 10_000,
-        });
+        // Localiza os elementos de login via PlaywrightElementHelper (usa selectores de TestConfig como hints)
+        var usernameEl = await PlaywrightElementHelper.FindElementAsync(_page, TestConfig.UsernameSelector);
+        await usernameEl.FillAsync(TestConfig.TestUser);
 
-        // Preenche usando os selectores de login configurados em TestConfig/appsettings.json
-        await _page.Locator(TestConfig.UsernameSelector).FillAsync(TestConfig.TestUser);
-        await _page.Locator(TestConfig.PasswordSelector).FillAsync(TestConfig.TestPassword);
-        await _page.Locator(TestConfig.LoginButtonSelector).ClickAsync();
+        var passwordEl = await PlaywrightElementHelper.FindElementAsync(_page, TestConfig.PasswordSelector);
+        await passwordEl.FillAsync(TestConfig.TestPassword);
+
+        var loginBtn = await PlaywrightElementHelper.FindElementAsync(_page, TestConfig.LoginButtonSelector);
+        await loginBtn.ClickAsync();
 
         // Aguarda que a URL mude — se não mudar, as asserções seguintes irão detectar o falhanço.
         try
