@@ -1,34 +1,41 @@
-# test_engine (motor genérico de testes funcionais)
+# test_engine — Motor de Testes Funcionais
 
-Este diretório contém um **motor reutilizável** de testes funcionais em **.NET 8** usando:
+Motor de testes funcionais em **.NET 8** com:
 
-- Playwright
-- Reqnroll (Gherkin)
-- NUnit
+- **Playwright** — automação de browser
+- **Reqnroll** — testes BDD em sintaxe Gherkin
+- **NUnit** — runner de testes
 
-O objetivo é **receber ficheiros `.feature` gerados automaticamente** (por exemplo por agentes de IA) e executá-los de forma consistente, sem depender de um domínio/projeto específico.
+O objectivo é receber ficheiros `.feature` (gerados pelo Test Generator Agent) e executá-los de forma consistente contra qualquer ambiente.
 
-## Como correr (Replit)
+---
 
-Usa sempre o script de execução incluído, que configura automaticamente o ambiente:
+## Como correr
+
+**No Replit** (headless automático, sem janela):
 
 ```bash
 bash test_engine/run_tests.sh
 ```
 
-Para filtrar um cenário específico:
+**Localmente** (abre o browser para ver o teste a executar):
+
+```bash
+cd test_engine
+dotnet test
+```
+
+Filtrar um cenário específico:
 
 ```bash
 bash test_engine/run_tests.sh --filter "Name=UserLogsInWithValidCredentials"
 ```
 
-O script:
-- Configura o `LD_LIBRARY_PATH` necessário para o Chromium correr em ambiente Nix
-- Executa `dotnet test` com os argumentos passados
+---
 
 ## Primeira instalação
 
-Antes de correr testes pela primeira vez é necessário instalar os binários do browser:
+Só é necessário fazer uma vez após clonar o repositório:
 
 ```bash
 cd test_engine
@@ -36,59 +43,83 @@ dotnet build
 pwsh bin/Debug/net8.0/playwright.ps1 install chromium
 ```
 
+---
+
 ## Configuração
 
-A configuração está centralizada em `appsettings.json` e pode ser sobreposta por variáveis de ambiente:
+Centralizada em `appsettings.json`. Pode ser sobreposta por variáveis de ambiente:
 
-| Variável de ambiente | Chave JSON   | Descrição                              |
-|----------------------|--------------|----------------------------------------|
-| `BASE_URL`           | `BaseUrl`    | URL base da aplicação sob teste        |
-| `HEADLESS`           | `Headless`   | `true`/`false` (padrão: `true`)        |
-| `LOGIN_PATH`         | `LoginPath`  | Caminho da página de login             |
-| `TEST_USER`          | `TestUser`   | Username para testes de autenticação   |
-| `TEST_PASSWORD`      | `TestPassword` | Password para testes de autenticação |
+| Variável de ambiente | Chave JSON     | Descrição                                         |
+|----------------------|----------------|---------------------------------------------------|
+| `BASE_URL`           | `BaseUrl`      | URL base da aplicação sob teste                   |
+| `HEADLESS`           | `Headless`     | `true` = sem janela / `false` = browser visível   |
+| `LOGIN_PATH`         | `LoginPath`    | Caminho da página de login (ex: `#/login`)        |
+| `TEST_USER`          | `TestUser`     | Username para testes de autenticação              |
+| `TEST_PASSWORD`      | `TestPassword` | Password para testes de autenticação              |
 
-Exemplo via variáveis de ambiente:
+Exemplo — apontar para outro ambiente:
 
 ```bash
-BASE_URL=https://minha-app.exemplo.com bash test_engine/run_tests.sh
+BASE_URL=https://staging.exemplo.com bash test_engine/run_tests.sh
 ```
 
-## Selectores esperados na aplicação
+O `run_tests.sh` força `HEADLESS=true` para o ambiente Replit. Localmente o valor de `appsettings.json` é usado (`false` por defeito — browser abre).
 
-O `LoginPage.cs` usa atributos `data-cy` para localizar elementos (padrão Cypress):
-
-- Email: `input[data-cy='email']`
-- Password: `input[data-cy='password']`
-- Botão de login: `text=Iniciar Sessão`
-
-Estes atributos têm de existir no HTML da aplicação sob teste. Se a app usar outros selectores, actualiza `Pages/LoginPage.cs` em conformidade.
+---
 
 ## Estrutura
 
 ```
 test_engine/
-  Features/            # Ficheiros .feature (Gherkin)
-    generated/         # Gerados automaticamente pelo pipeline de agentes
-  StepDefinitions/     # Step definitions reutilizáveis
-  Pages/               # Page Objects (padrão POM)
-  Hooks/               # Setup/teardown de Playwright e DI
-  Config/              # Configuração do motor
-  Helpers/             # Auxiliares (manter mínimo)
-  TestData/            # Modelos de dados de teste
-  run_tests.sh         # Script de execução (usar sempre este)
-  NuGet.Config         # Fonte de pacotes NuGet
-  appsettings.json     # Configuração padrão
+├── Features/                   # Cenários Gherkin
+│   ├── Login.feature           # Cenário de autenticação
+│   ├── Navigation.feature      # Cenário de navegação básica
+│   └── generated/              # Gerados pelo Test Generator Agent (pipeline)
+├── StepDefinitions/            # Implementação dos steps Gherkin
+│   ├── LoginStepDefinitions.cs
+│   └── NavigationStepDefinitions.cs
+├── Pages/                      # Page Objects (padrão POM)
+│   ├── BasePage.cs             # Classe base com navegação e helpers
+│   ├── LoginPage.cs            # Login: preencher form, verificar autenticação
+│   └── SimplePage.cs           # Páginas genéricas (verificar URL, título)
+├── Hooks/
+│   └── CommonHooks.cs          # Setup/teardown do browser e injecção de dependências
+├── Config/
+│   └── TestConfig.cs           # Leitura de appsettings.json + env vars
+├── Helpers/
+│   └── ConfigurationHelper.cs  # Helpers de acesso à configuração
+├── TestData/
+│   └── GenericUser.cs          # Modelo de dados de utilizador de teste
+├── appsettings.json            # Configuração padrão
+├── run_tests.sh                # Script de execução (usar no Replit)
+├── NuGet.Config                # Fonte de pacotes NuGet
+├── GlobalUsings.cs             # Using directives globais
+└── FunctionalTests.csproj      # Projecto .NET
 ```
+
+---
+
+## Selectores usados
+
+O `LoginPage.cs` usa selectores baseados nos atributos HTML reais da aplicação em teste (`https://dev.nexus.shipperform.devlop.systems`):
+
+| Campo          | Selector                  |
+|----------------|---------------------------|
+| Email          | `input[type='text']`      |
+| Password       | `input[type='password']`  |
+| Botão de login | `text=Iniciar Sessão`     |
+
+Se a aplicação sob teste mudar ou for diferente, actualiza `Pages/LoginPage.cs`.
+
+---
 
 ## Integração com o pipeline de agentes
 
-O fluxo previsto é:
-
 ```
-PM Agent gera issues
-  → acceptance_criteria
-  → Agent Testes gera ficheiros .feature
-  → copiar para test_engine/Features/generated/
+PM Agent gera issues com acceptance_criteria
+  → Test Generator Agent converte em ficheiros .feature
+  → coloca em Features/generated/
   → bash test_engine/run_tests.sh
 ```
+
+Os ficheiros em `Features/generated/` são ignorados pelo git (apenas o `.gitkeep` é versionado).

@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .env
 outputs/
+
+# Test Engine
+test_engine/bin/
+test_engine/obj/
+test_engine/Features/generated/*.feature

@@ -1,32 +1,35 @@
-# PM Agent - AI Agents Validation
+# AI Agents Validation
 
 ## Project Overview
 
-A multi-agent AI workflow proof-of-concept written in Portuguese. The system uses OpenRouter (Llama 3.1 8b) to interpret product requirements, generate GitHub issues, generate React frontend components, and run functional tests.
+Proof-of-concept of a multi-agent AI pipeline (written in Portuguese) that covers a full software development cycle: from interpreting a product requirement to a tested, documented output. Uses OpenRouter (Llama 3.1 8b) via the OpenAI-compatible API.
 
 ## Architecture
 
-### Python Backend (`/`)
-- **Entry point:** `main.py` — CLI agent orchestrator
-- **`agent/` module:**
-  - `agent_planner.py` — PM Agent: generates a structured plan (issues) from a user prompt via OpenRouter
-  - `agent_validator.py` — Validates the generated plan
-  - `agent_outputs.py` — Saves plan outputs to run folders, copies components to frontend preview
-  - `agent_github.py` — Creates GitHub issues via the GitHub API
-  - `agent_frontend_generator.py` — Frontend Agent: generates React TSX components via OpenRouter
+### Python Agents (`agent/`)
+- **Entry point:** `main.py` — CLI orchestrator that runs the full pipeline
+- `agent_planner.py` — PM Agent: decomposes a user prompt into GitHub issues with acceptance criteria
+- `agent_validator.py` — Validates the plan before proceeding
+- `agent_outputs.py` — Writes plan outputs to timestamped run folders
+- `agent_github.py` — Creates GitHub issues via the GitHub API
+- `agent_frontend_generator.py` — Frontend Agent: generates React TSX components per issue
 
 ### React Frontend Preview (`frontend_preview/`)
 - React 19 + Vite 8 + TypeScript
-- Displays generated components as a live preview
+- Previews AI-generated components in a live browser
 - Generated components land in `frontend_preview/src/generated/`
 - Dev server runs on `0.0.0.0:5000`
 
 ### Test Engine (`test_engine/`)
 - .NET 8 + Playwright + Reqnroll (Gherkin/BDD) + NUnit
-- Generic reusable functional test runner
-- Receives `.feature` files from the AI agent pipeline
+- Generic BDD test runner — receives `.feature` files and executes them
+- AI-generated `.feature` files go to `test_engine/Features/generated/`
 - Target app: `https://dev.nexus.shipperform.devlop.systems/`
 - Browser binaries at: `.cache/ms-playwright/chromium-1208/`
+- Login selectors: `input[type='text']`, `input[type='password']`, `text=Iniciar Sessão`
+
+### Docs (`docs/`)
+- `notas.md` — design decisions and implementation notes
 
 ## Environment Variables Required
 
