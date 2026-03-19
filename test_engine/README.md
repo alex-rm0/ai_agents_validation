@@ -16,7 +16,7 @@ Desenhado para ser **portátil e auto-suficiente**: podes copiar esta pasta para
 1. Copia a pasta test_engine/ para o teu projecto
 
 2. Corre o script de descoberta de selectores:
-   python3 test_engine/tools/discover_selectors.py --url https://tua-app.com --login-path #/login
+   python3 test_engine/tools/discover_selectors.py --url https://tua-app.com --login-path "#/login"
 
 3. Copia os selectores sugeridos para appsettings.json
 
@@ -103,7 +103,7 @@ pip install -r test_engine/tools/requirements.txt
 python3 test_engine/tools/discover_selectors.py
 
 # Apontar para outro URL:
-python3 test_engine/tools/discover_selectors.py --url https://outra-app.com --login-path /login
+python3 test_engine/tools/discover_selectors.py --url https://outra-app.com --login-path "#/login"
 
 # Ver o browser a trabalhar:
 python3 test_engine/tools/discover_selectors.py --no-headless
