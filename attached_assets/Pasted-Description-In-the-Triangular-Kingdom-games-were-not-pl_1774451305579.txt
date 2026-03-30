@@ -1,0 +1,42 @@
+Description
+
+In the Triangular Kingdom, games were not played with cards or dice, but with black trikits - small,equilateral black triangular tiles, each etched with three numbers at its corners. Every black trikit wasspecial. Its three numbers, always between 0 and 5, were carved in clockwise order, never decreasing as youwent around the triangle. Some trikits repeated the same number more than once. Others were mixingdifferent values - but no two tiles were ever exactly the same.
+
+The elders of the kingdom had strict rules for how the game could be played:
+- The first trikit could be placed freely on the table.
+- Any trikit placed after that had to match one already on the table.
+- A match happened only when two tiles shared a side with the same two numbers - corner to corner, sideto side.
+
+When a match occurred, the kingdom rejoiced, because points were earned. The score was simple: Every timetwo sides matched, the two matching numbers were added to the score. More matches meant more glory.
+But there was a catch ... Not every tile could always be placed. Some trikits simply refused to fitanywhere, no matter how cleverly the table was arranged.
+
+Given a collection of trikits - fewer than 20, to keep the challenge fair - you are appointed as the MasterStrategist. Your task is not merely to play the game, but to play it perfectly:
+- Choose which trikit to place first
+- Decide which trikit to match, and in what order
+- Accept that some trikits may remain unused
+Your goal is to maximize the total score earned from all valid matches.
+
+A trikit can only be played if it is the first one or if there is a matching trikit in the table, that is,both have a side with two matching numbers; see figure below.
+In this exercise, the score in a trikit game is the sum of matching numbers. Given a set of trikits, thegoal is to compute the maximum score that can be achieved. Note that it may not be possible to have alltrikits matched.
+
+Input
+Each test case contains n lines, each of which describes a trikit as a sequence of three integer numbers innon-decreasing order.
+
+Output
+For each test case, print the maximum score that can be achieved.
+Note: It would be wise to write a procedure that allows to print the current status of the game.
+
+Constraints
+n < 20
+Example
+Example input:
+0 3 4
+0 0 2
+2 4 4
+0 1 2
+2 3 4
+1 4 5
+0 2 2
+2 2 4
+Example output:
+20

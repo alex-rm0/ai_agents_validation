@@ -1,0 +1,761 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  FunctionalTests -> C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\bin\Debug\net8.0\FunctionalTests.dll
+Test run for C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\bin\Debug\net8.0\FunctionalTests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed PaginaDeLoginComEstilosEAnimacoes [14 s]
+  Error Message:
+   Shouldly.ShouldAssertException : isVisible
+    should be
+True
+    but was
+False
+
+Additional Info:
+    Esperava ver o texto 'Estilos e anima├º├Áes agrad├íveis' na p├ígina, mas n├úo foi encontrado.
+  Stack Trace:
+     at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUserShouldSee(String text) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 172
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+1)    at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUserShouldSee(String text) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 172
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (2,6s)
+ Then the user should see "Estilos e anima├º├Áes agrad├íveis"
+ [GenericSteps] Verificar texto vis├¡vel: 'Estilos e anima├º├Áes agrad├íveis'
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ -> error: isVisible
+     should be
+ True
+     but was
+ False
+ 
+ Additional Info:
+     Esperava ver o texto 'Estilos e anima├º├Áes agrad├íveis' na p├ígina, mas n├úo foi encontrado. (10,7s)
+ And the page should have a responsive design
+ -> undefined: No matching step definition found for the step. Use the following code to create one:
+         [Then("the page should have a responsive design")]
+ public void ThenThePageShouldHaveAResponsiveDesign()
+ {
+     throw new PendingStepException();
+ }
+ 
+ And the page should have a clean and organized layout
+ -> undefined: No matching step definition found for the step. Use the following code to create one:
+         [Then("the page should have a clean and organized layout")]
+ public void ThenThePageShouldHaveACleanAndOrganizedLayout()
+ {
+     throw new PendingStepException();
+ }
+ 
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed AcederAAplicacaoAposLoginAutomatico [53 s]
+  Error Message:
+   System.TimeoutException : Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until "Load"
+============================================================
+  ----> System.TimeoutException : Timeout 10000ms exceeded.
+  Stack Trace:
+     at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 226
+   at Microsoft.Playwright.Core.Frame.WaitForNavigationInternalAsync(Waiter waiter, String urlString, Func`2 urlFunc, Regex urlRegex, Nullable`1 waitUntil) in /_/src/Playwright/Core/Frame.cs:line 321
+   at Microsoft.Playwright.Core.Frame.RunAndWaitForNavigationAsync(Func`1 action, FrameRunAndWaitForNavigationOptions options) in /_/src/Playwright/Core/Frame.cs:line 285
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUrlShouldContain(String fragment) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 200
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.AcederAAplicacaoAposLoginAutomatico() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\generated\ExemploLogin.feature:line 23
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+--TimeoutException
+   at Microsoft.Playwright.Helpers.TaskHelper.<>c__DisplayClass2_0.<WithTimeout>b__0() in /_/src/Playwright/Helpers/TaskHelper.cs:line 72
+   at Microsoft.Playwright.Helpers.TaskHelper.WithTimeout(Task task, Func`1 timeoutAction, TimeSpan timeout, CancellationToken cancellationToken) in /_/src/Playwright/Helpers/TaskHelper.cs:line 108
+   at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 218
+1)    at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 226
+   at Microsoft.Playwright.Core.Frame.WaitForNavigationInternalAsync(Waiter waiter, String urlString, Func`2 urlFunc, Regex urlRegex, Nullable`1 waitUntil) in /_/src/Playwright/Core/Frame.cs:line 321
+   at Microsoft.Playwright.Core.Frame.RunAndWaitForNavigationAsync(Func`1 action, FrameRunAndWaitForNavigationOptions options) in /_/src/Playwright/Core/Frame.cs:line 285
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUrlShouldContain(String fragment) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 200
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.AcederAAplicacaoAposLoginAutomatico() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\generated\ExemploLogin.feature:line 23
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+--TimeoutException
+   at Microsoft.Playwright.Helpers.TaskHelper.<>c__DisplayClass2_0.<WithTimeout>b__0() in /_/src/Playwright/Helpers/TaskHelper.cs:line 72
+   at Microsoft.Playwright.Helpers.TaskHelper.WithTimeout(Task task, Func`1 timeoutAction, TimeSpan timeout, CancellationToken cancellationToken) in /_/src/Playwright/Helpers/TaskHelper.cs:line 108
+   at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 218
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user is logged in
+ [GenericSteps] Login autom├ítico ÔÇö a navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [PlaywrightElementHelper] 'input[type='text']' encontrado via css
+ [PlaywrightElementHelper] 'input[type='password']' encontrado via css
+ [PlaywrightElementHelper] 'text=Iniciar Sess├úo' encontrado via css
+ [New Page Console] Failed to load resource: the server responded with a status of 500 ()
+ [Browser Console] Failed to load resource: the server responded with a status of 500 ()
+ [GenericSteps] Login timeout ÔÇö URL ainda ├®: https://dev.nexus.shipperform.devlop.systems/#/login. As verifica├º├Áes seguintes ir├úo detectar o falhan├ºo.
+ -> done: GenericStepDefinitions.GivenTheUserIsLoggedIn() (42,7s)
+ Then the url should contain "dashboard"
+ [GenericSteps] Verificar URL cont├®m: 'dashboard'
+ -> error: Timeout 10000ms exceeded.
+ =========================== logs ===========================
+ waiting for navigation until "Load"
+ ============================================================ (10,0s)
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed LoginComCredenciaisValidasUsandoStepsGenericos [39 s]
+  Error Message:
+   System.TimeoutException : Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until "Load"
+============================================================
+  ----> System.TimeoutException : Timeout 10000ms exceeded.
+  Stack Trace:
+     at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 226
+   at Microsoft.Playwright.Core.Frame.WaitForNavigationInternalAsync(Waiter waiter, String urlString, Func`2 urlFunc, Regex urlRegex, Nullable`1 waitUntil) in /_/src/Playwright/Core/Frame.cs:line 321
+   at Microsoft.Playwright.Core.Frame.RunAndWaitForNavigationAsync(Func`1 action, FrameRunAndWaitForNavigationOptions options) in /_/src/Playwright/Core/Frame.cs:line 285
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUrlShouldContain(String fragment) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 200
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.LoginComCredenciaisValidasUsandoStepsGenericos() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\generated\ExemploLogin.feature:line 12
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+--TimeoutException
+   at Microsoft.Playwright.Helpers.TaskHelper.<>c__DisplayClass2_0.<WithTimeout>b__0() in /_/src/Playwright/Helpers/TaskHelper.cs:line 72
+   at Microsoft.Playwright.Helpers.TaskHelper.WithTimeout(Task task, Func`1 timeoutAction, TimeSpan timeout, CancellationToken cancellationToken) in /_/src/Playwright/Helpers/TaskHelper.cs:line 108
+   at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 218
+1)    at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 226
+   at Microsoft.Playwright.Core.Frame.WaitForNavigationInternalAsync(Waiter waiter, String urlString, Func`2 urlFunc, Regex urlRegex, Nullable`1 waitUntil) in /_/src/Playwright/Core/Frame.cs:line 321
+   at Microsoft.Playwright.Core.Frame.RunAndWaitForNavigationAsync(Func`1 action, FrameRunAndWaitForNavigationOptions options) in /_/src/Playwright/Core/Frame.cs:line 285
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenTheUrlShouldContain(String fragment) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 200
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.Generated.LoginDeUtilizadorExemploDeStepsGenericosFeature.LoginComCredenciaisValidasUsandoStepsGenericos() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\generated\ExemploLogin.feature:line 12
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+--TimeoutException
+   at Microsoft.Playwright.Helpers.TaskHelper.<>c__DisplayClass2_0.<WithTimeout>b__0() in /_/src/Playwright/Helpers/TaskHelper.cs:line 72
+   at Microsoft.Playwright.Helpers.TaskHelper.WithTimeout(Task task, Func`1 timeoutAction, TimeSpan timeout, CancellationToken cancellationToken) in /_/src/Playwright/Helpers/TaskHelper.cs:line 108
+   at Microsoft.Playwright.Core.Waiter.WaitForPromiseAsync[T](Task`1 task, Action dispose) in /_/src/Playwright/Core/Waiter.cs:line 218
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (7,9s)
+ When the user fills "input[type='text']" with "sandrodev"
+ [GenericSteps] Preencher 'input[type='text']' com 'sandrodev'
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [PlaywrightElementHelper] 'input[type='text']' encontrado via css
+ -> done: GenericStepDefinitions.WhenTheUserFillsFieldWith("input[type='text']", "sandrodev") (7,7s)
+ And the user fills "input[type='password']" with "Sandrodev-123"
+ [GenericSteps] Preencher 'input[type='password']' com 'Sandrodev-123'
+ [PlaywrightElementHelper] 'input[type='password']' encontrado via css
+ -> done: GenericStepDefinitions.WhenTheUserFillsFieldWith("input[type='passw...", "Sandrodev-123") (7,7s)
+ And the user clicks "Iniciar Sess├úo"
+ [GenericSteps] Clicar em 'Iniciar Sess├úo'
+ [PlaywrightElementHelper] 'Iniciar Sess├úo' encontrado via text[exact]
+ -> done: GenericStepDefinitions.WhenTheUserClicksElement("Iniciar Sess├úo") (4,8s)
+ Then the url should contain "dashboard"
+ [GenericSteps] Verificar URL cont├®m: 'dashboard'
+ -> error: Timeout 10000ms exceeded.
+ =========================== logs ===========================
+ waiting for navigation until "Load"
+ ============================================================ (10,0s)
+ And the user should see "Dashboard"
+ -> skipped because of previous errors
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed UserLogsInWithValidCredentials [24 s]
+  Error Message:
+   Shouldly.ShouldAssertException : authenticated
+    should be
+True
+    but was
+False
+  Stack Trace:
+     at FunctionalTests.StepDefinitions.LoginStepDefinitions.ThenTheUserShouldBeAuthenticated() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\LoginStepDefinitions.cs:line 52
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+1)    at FunctionalTests.StepDefinitions.LoginStepDefinitions.ThenTheUserShouldBeAuthenticated() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\LoginStepDefinitions.cs:line 52
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the application base url is configured
+ -> done: NavigationStepDefinitions.GivenTheApplicationBaseUrlIsConfigured() (0,0s)
+ Given a user is on the login page
+ [Config] LoginPath: '#/login'
+ [Config] LoginPath: '#/login'
+ [BasePage.GotoAsync] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [BasePage.GotoAsync] Page fechada antes do Goto? False
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ [BasePage.GotoAsync] URL atual ap├│s Goto: https://dev.nexus.shipperform.devlop.systems/#/login
+ [BasePage.GotoAsync] Page fechada depois do Goto? False
+ [Step Given] URL ap├│s navega├º├úo: https://dev.nexus.shipperform.devlop.systems/#/login
+ [Step Given] Page fechada? False
+ [Step Given] P├íginas no contexto: 1
+ -> done: LoginStepDefinitions.GivenAUserIsOnTheLoginPage() (5,9s)
+ When the user logs in with valid credentials
+ [Step When] URL atual: https://dev.nexus.shipperform.devlop.systems/#/login
+ [Step When] Page fechada? False
+ [Step When] P├íginas no contexto: 1
+ [LoginAsync] URL atual: https://dev.nexus.shipperform.devlop.systems/#/login
+ [LoginAsync] Page fechada? False
+ [LoginAsync] N├║mero de p├íginas no contexto antes da espera: 1
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [LoginAsync] N├║mero de p├íginas no contexto depois da espera: 1
+ -> done: LoginStepDefinitions.WhenTheUserLogsInWithValidCredentials() (2,3s)
+ Then the user should be authenticated
+ [New Page Console] Failed to load resource: the server responded with a status of 500 ()
+ [Browser Console] Failed to load resource: the server responded with a status of 500 ()
+ [IsAuthenticatedAsync] Timeout ÔÇö URL ainda ├®: https://dev.nexus.shipperform.devlop.systems/#/login
+ -> error: authenticated
+     should be
+ True
+     but was
+ False (15,0s)
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed MostrarPasswordAoClicarNoBotao [15 s]
+  Error Message:
+   System.InvalidOperationException : [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'Mostrar Password'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector.
+  Stack Trace:
+     at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserClicksElement(String element) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 134
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.MostrarPasswordFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.MostrarPasswordFeature.MostrarPasswordAoClicarNoBotao() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\MostrarPassword.feature:line 11
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+1)    at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserClicksElement(String element) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 134
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.MostrarPasswordFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.MostrarPasswordFeature.MostrarPasswordAoClicarNoBotao() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\MostrarPassword.feature:line 11
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (3,7s)
+ When the user clicks "Mostrar Password"
+ [GenericSteps] Clicar em 'Mostrar Password'
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ -> error: [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'Mostrar Password'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector. (10,6s)
+ Then the user should see "Password vis├¡vel"
+ -> skipped because of previous errors
+ When the user clicks "Mostrar Password"
+ -> skipped because of previous errors
+ Then the user should see "Password oculto"
+ -> skipped because of previous errors
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed PaginaDeLoginComEstruturaResponsiva [4 s]
+  Error Message:
+   Shouldly.ShouldAssertException : actualTitle
+    should be
+"P├ígina de Login"
+    but was
+"ShipperForm"
+    difference
+Difference     |  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   
+               | \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  
+Index          | 0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   
+Expected Value | P    ├í    g    i    n    a    \s   d    e    \s   L    o    g    i    n    
+Actual Value   | S    h    i    p    p    e    r    F    o    r    m                        
+Expected Code  | 80   225  103  105  110  97   32   100  101  32   76   111  103  105  110  
+Actual Code    | 83   104  105  112  112  101  114  70   111  114  109                      
+
+Additional Info:
+    O t├¡tulo da p├ígina deveria ser 'P├ígina de Login', mas ├® 'ShipperForm'.
+  Stack Trace:
+     at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenThePageTitleShouldBe(String expectedTitle) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 270
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+1)    at FunctionalTests.StepDefinitions.GenericStepDefinitions.ThenThePageTitleShouldBe(String expectedTitle) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 270
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (2,8s)
+ Then the page title should be "P├ígina de Login"
+ [GenericSteps] Verificar t├¡tulo da p├ígina: 'P├ígina de Login'
+ -> error: actualTitle
+     should be
+ "P├ígina de Login"
+     but was
+ "ShipperForm"
+     difference
+ Difference     |  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   
+                | \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  \|/  
+ Index          | 0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   
+ Expected Value | P    ├í    g    i    n    a    \s   d    e    \s   L    o    g    i    n    
+ Actual Value   | S    h    i    p    p    e    r    F    o    r    m                        
+ Expected Code  | 80   225  103  105  110  97   32   100  101  32   76   111  103  105  110  
+ Actual Code    | 83   104  105  112  112  101  114  70   111  114  109                      
+ 
+ Additional Info:
+     O t├¡tulo da p├ígina deveria ser 'P├ígina de Login', mas ├® 'ShipperForm'. (0,1s)
+ And the user should see "Login"
+ -> skipped because of previous errors
+ And the user should see "Email"
+ -> skipped because of previous errors
+ And the user should see "Password"
+ -> skipped because of previous errors
+ And the user should see "Mostrar Password"
+ -> skipped because of previous errors
+ And the user should see "Recuperar Password"
+ -> skipped because of previous errors
+ And the url should contain "#/login"
+ -> skipped because of previous errors
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed RecuperarPasswordAoClicarNoLink [14 s]
+  Error Message:
+   System.InvalidOperationException : [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'Recuperar Password'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector.
+  Stack Trace:
+     at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserClicksElement(String element) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 134
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.RecuperarPasswordFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.RecuperarPasswordFeature.RecuperarPasswordAoClicarNoLink() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\RecuperarPassword.feature:line 10
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+1)    at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserClicksElement(String element) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 134
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.RecuperarPasswordFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.RecuperarPasswordFeature.RecuperarPasswordAoClicarNoLink() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\RecuperarPassword.feature:line 10
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (2,8s)
+ When the user clicks "Recuperar Password"
+ [GenericSteps] Clicar em 'Recuperar Password'
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ -> error: [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'Recuperar Password'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector. (10,6s)
+ Then the user should see "Recuperar Password"
+ -> skipped because of previous errors
+ And the url should contain "#/recuperar-password"
+ -> skipped because of previous errors
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+  Failed ValidarEmailEmTempoReal [26 s]
+  Error Message:
+   System.InvalidOperationException : [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'input[type='email']'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector.
+  Stack Trace:
+     at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserFillsFieldWith(String field, String value) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 110
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.ValidacaoDeEmailFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.ValidacaoDeEmailFeature.ValidarEmailEmTempoReal() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\ValidacaoDeEmail.feature:line 11
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+1)    at FunctionalTests.Helpers.PlaywrightElementHelper.FindElementAsync(IPage page, String hint) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Helpers\PlaywrightElementHelper.cs:line 62
+   at FunctionalTests.StepDefinitions.GenericStepDefinitions.WhenTheUserFillsFieldWith(String field, String value) in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\StepDefinitions\GenericStepDefinitions.cs:line 110
+   at Reqnroll.Bindings.AsyncMethodHelper.ConvertTaskOfT(Task task, Boolean getValue)
+   at Reqnroll.Bindings.BindingDelegateInvoker.InvokeDelegateAsync(Delegate bindingDelegate, Object[] invokeArgs, ExecutionContextHolder executionContext)
+   at Reqnroll.Bindings.BindingInvoker.InvokeBindingAsync(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.ExecuteStepMatchAsync(BindingMatch match, Object[] arguments, DurationHolder durationHolder)
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>b__7>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Reqnroll.Infrastructure.TestExecutionEngine.<>c__DisplayClass57_0.<<ExecuteStepAsync>g__HandleStepExecutionExceptions|0>d.MoveNext()
+   at Reqnroll.Infrastructure.TestExecutionEngine.OnAfterLastStepAsync()
+   at Reqnroll.TestRunner.CollectScenarioErrorsAsync()
+   at FunctionalTests.Features.ValidacaoDeEmailFeature.ScenarioCleanupAsync()
+   at FunctionalTests.Features.ValidacaoDeEmailFeature.ValidarEmailEmTempoReal() in C:\Users\alexa\.vscode\projects\ai_system_validation\ai_agents_validation\test_engine\Features\ValidacaoDeEmail.feature:line 11
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+
+  Standard Output Messages:
+ [Playwright] NOVA PAGE DETETADA: about:blank
+ Given the user navigates to "#/login"
+ [GenericSteps] A navegar para: https://dev.nexus.shipperform.devlop.systems/#/login
+ [New Page Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [Browser Console] Access to script at 'https://esrimap.esri-portugal.pt/lib/1.1.0/esri-map.esm.js' from origin 'https://dev.nexus.shipperform.devlop.systems' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+ [New Page Console] Failed to load resource: net::ERR_FAILED
+ [Browser Console] Failed to load resource: net::ERR_FAILED
+ -> done: GenericStepDefinitions.GivenTheUserNavigatesTo("#/login") (16,4s)
+ When the user fills "input[type='email']" with "invalid_email"
+ [GenericSteps] Preencher 'input[type='email']' com 'invalid_email'
+ [New Page Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ [Browser Console] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+ -> error: [PlaywrightElementHelper] N├úo foi poss├¡vel encontrar o elemento 'input[type='email']'. Estrat├®gias tentadas: placeholder, label, texto vis├¡vel (exacto/parcial), data-testid, data-cy, CSS selector. (9,1s)
+ Then the user should not see "Email v├ílido"
+ -> skipped because of previous errors
+ When the user fills "input[type='email']" with "sandrodev@example.com"
+ -> skipped because of previous errors
+ Then the user should see "Email v├ílido"
+ -> skipped because of previous errors
+ [Playwright] NEW PAGE CLOSED
+ [Playwright] PAGE CLOSED
+ [Playwright] CONTEXT CLOSED
+ [Playwright] BROWSER DISCONNECTED
+
+
+
+Failed!  - Failed:     8, Passed:     2, Skipped:     0, Total:    10, Duration: 4 m 3 s - FunctionalTests.dll (net8.0)
