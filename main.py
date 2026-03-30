@@ -154,18 +154,39 @@ def main() -> None:
         else:
             print("Opção inválida. Geração frontend ignorada.")
 
-    generate_tests = input(
-        "\nQueres gerar ficheiros de teste Gherkin (.feature)? (s/n): "
-    ).strip().lower()
+    print("\n=== SUGESTÕES DE TESTES FUNCIONAIS ===")
+    for i, issue in enumerate(plan["issues"], start=1):
+        criteria = issue.get("acceptance_criteria", [])
+        n = len(criteria)
+        est = min(n, 3) if n > 0 else 1
+        print(f"{i}. {issue['title']}")
+        print(f"   {n} critério(s) de aceitação → ~{est} cenário(s) estimado(s)")
 
-    if generate_tests == "s":
-        print("\nA gerar ficheiros .feature...")
+    print("\nQuais queres gerar? (ex: 1,3  |  'todos'  |  'nenhum')")
+    test_selection = input("Escolha: ").strip().lower()
+
+    selected_for_tests = []
+
+    if test_selection == "todos":
+        selected_for_tests = plan["issues"]
+    elif test_selection not in ("nenhum", ""):
+        for part in test_selection.split(","):
+            part = part.strip()
+            if part.isdigit():
+                idx = int(part) - 1
+                if 0 <= idx < len(plan["issues"]):
+                    selected_for_tests.append(plan["issues"][idx])
+        if not selected_for_tests:
+            print("Seleção inválida. Geração de testes ignorada.")
+
+    if selected_for_tests:
+        print(f"\nA gerar {len(selected_for_tests)} ficheiro(s) .feature...")
 
         try:
             test_result = generate_functional_tests(
                 user_prompt=user_prompt,
                 requirements=plan["requirements"],
-                issues=plan["issues"],
+                issues=selected_for_tests,
             )
 
             tests_dir = save_test_generation(test_result, run_dir)
